@@ -1,16 +1,9 @@
 from __future__ import print_function
 
 import pandas as pd
-
+import numpy as np
 """
     Concepts de base
-     On distingue deux grandes catégories de structures de données Pandas :
-
-    Le DataFrame, un tableau relationnel de données, avec des lignes et des colonnes étiquetées
-    La Series, constituée d'une seule colonne. Un DataFrame contient une ou plusieurs Series, chacune étant étiquetée.
-
-    Le DataFrame est une abstraction fréquemment utilisée pour manipuler des données. Spark et R proposent des implémentations similaires.
-
 """
 
 pd.Series(['San Francisco', 'San Jose', 'Sacramento'])
@@ -24,8 +17,7 @@ california_housing_dataframe.head()
 california_housing_dataframe.hist('housing_median_age')
 
 """
-    Accéder aux données
-    L'accès aux données d'un DataFrame s'effectue au moyen d'opérations de liste ou de dictionnaire Python courantes
+    Acceder aux donnees
 """
 cities = pd.DataFrame({ 'City name': city_names, 'Population': population })
 print(type(cities['City name']))
@@ -36,3 +28,14 @@ cities['City name'][1]
 
 print(type(cities[0:2]))
 cities[0:2]
+
+"""
+    manipulate data
+"""
+population / 1000.
+np.log(population)
+population.apply(lambda val: val > 1000000)
+
+cities['Area square miles'] = pd.Series([46.87, 176.53, 97.92])
+cities['Population density'] = cities['Population'] / cities['Area square miles']
+cities
